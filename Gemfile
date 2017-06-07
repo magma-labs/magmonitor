@@ -43,4 +43,7 @@ group :development do
   gem 'web-console', '>= 3.3.0'
 end
 
-gem 'simplecov', require: false, group: :test
+group :test do
+  gem 'codeclimate-test-reporter', '~> 1.0.0', require: false
+  gem 'simplecov', require: false
+end
