@@ -3,6 +3,8 @@
 class RegistrationFlowController < ApplicationController
   skip_before_action :check_user_registration
 
+  layout 'public'
+
   def new
     @membership = current_user.memberships.new
     @membership.build_organization
@@ -11,7 +13,7 @@ class RegistrationFlowController < ApplicationController
   def create
     @membership = current_user.memberships.create(member_params)
     if @membership.valid?
-      current_user.registration_finished!
+      current_user.registration_finished
       redirect_to root_url
     else
       flash[:danger] = @membership.errors.full_messages.join(', ')
@@ -27,6 +29,6 @@ class RegistrationFlowController < ApplicationController
   end
 
   def org_attributes
-    { organization_attributes: [:name, :contact_email] }
+    { organization_attributes: %i[name contact_email] }
   end
 end

@@ -7,4 +7,8 @@ class User < ApplicationRecord
   def registration_finished
     update_attribute :fully_registered, true
   end
+
+  def find_organization(organization_id = '')
+    organizations.find_by(slug: organization_id) || organizations.first
+  end
 end

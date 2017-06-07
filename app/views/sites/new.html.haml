@@ -1,0 +1,13 @@
+.card
+  .card-block
+    %h4.card-title
+      New Site
+    = form_for @site, url: org_sites_path(current_org) do |f|
+      .form-group.row
+        = f.label :name, 'Site Name', class: 'col-sm-2 col-form-label'
+        .col-sm-10
+          = f.text_field :name, class: 'form-control', placeholder: 'New Site'
+      .form-group.row
+        .offset-sm-2.col-sm-10
+          = f.submit 'Create', class: 'btn btn-primary'
+          = link_to 'Cancel', org_sites_path(current_org), class: 'btn btn-danger'

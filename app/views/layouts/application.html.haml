@@ -3,15 +3,28 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1, shrink-to-fit=no", :name => "viewport"}/
+
     %title MagMonitor
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    .container
-      - flash.each do |type, message|
-        .alert.alert-dismissible.fade.show{class: "alert-#{type}", role: 'alert'}
-          %button.close{'data-dismiss' => 'alert', 'aria-label' => 'Close'}
-            %span{'aria-hidden' => 'true'} &times;
-          = message
-      = yield
+    %nav.nav-bar
+      Magmonitor, check site status.
+    .container-fluid
+      .row
+        %nav.col-sm-1.col-md-1.hidden-xs-down.bg-faded.sidebar
+          Welcome
+          %ul.nav.flex-column
+            %li.nav-item
+              Sites
+              %ul.nav.flex-column
+                - current_org.sites.each do |site|
+                  %li.nav-item= link_to site.name, org_site_path(org_id: current_org, id: site), class: 'nav-link'
+        %main.col-sm-11.offset-sm-1.col-md-9.offset-md-1.pt-3
+          - flash.each do |type, message|
+            .alert.alert-dismissible.fade.show{class: "alert-#{type}", role: 'alert'}
+              %button.close{'data-dismiss' => 'alert', 'aria-label' => 'Close'}
+                %span{'aria-hidden' => 'true'} &times;
+              = message
+          = yield

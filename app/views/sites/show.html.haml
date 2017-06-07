@@ -1,0 +1,21 @@
+%h4= @site.name
+
+.card-group
+  .card
+    .card-block
+      .card-title
+        %h4 Latest Checks
+      %table.table.table-stripped.table-bordered
+        %thead
+          %tr
+            %th Status
+            %th When
+            %th Code
+            %th Time
+            %th Location
+        %tbody
+          - @site.last_site_check_results do |site_check_result|
+            %tr
+              %td=site_check_result.status
+    .card-footer
+      = link_to 'Historical', org_site_path(current_org, @site)

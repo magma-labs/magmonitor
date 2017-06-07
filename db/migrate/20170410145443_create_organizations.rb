@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# :reek:disabled
 class CreateOrganizations < ActiveRecord::Migration[5.1]
   def change
     create_table :organizations do |t|

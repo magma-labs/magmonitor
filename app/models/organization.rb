@@ -3,13 +3,7 @@
 class Organization < ApplicationRecord
   has_many :users, through: :memberships
   has_many :memberships, inverse_of: :organization
-  before_validation :build_slug
+  has_many :sites
 
-  validates :name, presence: true, uniqueness: { case_sensitive: false }
-
-  private
-
-  def build_slug
-    self.slug = name.parameterize
-  end
+  include Sluggable
 end

@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170410145449) do
+ActiveRecord::Schema.define(version: 20170606235517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "check_locations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "memberships", force: :cascade do |t|
     t.bigint "organization_id"
@@ -33,6 +39,46 @@ ActiveRecord::Schema.define(version: 20170410145449) do
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "site_check_results", force: :cascade do |t|
+    t.string "raw_response"
+    t.string "response_code"
+    t.integer "response_time"
+    t.integer "check_location_id"
+    t.integer "site_check_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "site_checks", force: :cascade do |t|
+    t.string "name"
+    t.string "host_name"
+    t.string "port"
+    t.string "basic_auth"
+    t.string "check_type", default: "http"
+    t.string "user_agent"
+    t.integer "check_rate", default: 300
+    t.integer "site_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.integer "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sites_check_locations", force: :cascade do |t|
+    t.bigint "site_id"
+    t.bigint "check_location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["check_location_id"], name: "index_sites_check_locations_on_check_location_id"
+    t.index ["site_id"], name: "index_sites_check_locations_on_site_id"
   end
 
   create_table "users", force: :cascade do |t|

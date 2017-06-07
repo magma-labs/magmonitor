@@ -1,0 +1,14 @@
+.card-group
+  - @sites.each do |site|
+    .col-sm-2
+      .card
+        .card-block
+          %h4.card-title= site.name
+        .card-footer
+          = link_to 'Details', org_site_path(current_org, site)
+          = link_to 'Edit', edit_org_site_path(current_org, site)
+  .col-sm-2
+    .card
+      .card-block
+        %h4.card-title New Site
+        = link_to 'New', new_org_site_path(current_org)
