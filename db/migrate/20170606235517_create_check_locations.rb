@@ -9,7 +9,7 @@ class CreateCheckLocations < ActiveRecord::Migration[5.1]
     end
 
     create_table :sites_check_locations do |t|
-      t.references :site
+      t.references :site_check
       t.references :check_location
 
       t.timestamps

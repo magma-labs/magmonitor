@@ -6,13 +6,9 @@
       .col-sm-10
         = scf.text_field :name, class: 'form-control', placeholder: 'Check Name'
     .form-group.row
-      = scf.label :host_name, 'Host Name', class: 'col-2 col-form-label'
+      = scf.label :target_url, 'Target Url', class: 'col-2 col-form-label'
       .col-sm-10
-        = scf.text_field :host_name, class: 'form-control', placeholder: 'Host Name'
-    .form-group.row
-      = scf.label :port, 'Port', class: 'col-2 col-form-label'
-      .col-sm-10
-        = scf.text_field :port, class: 'form-control', value: '80'
+        = scf.text_field :target_url, class: 'form-control', placeholder: 'Host Name'
     .form-group.row
       = scf.label :basic_auth, 'Basic Auth', class: 'col-2 col-form-label'
       .col-sm-10
@@ -20,7 +16,7 @@
     .form-group.row
       = scf.label :check_type, 'Check Type', class: 'col-2 col-form-label'
       .col-sm-10
-        = scf.select :check_type, { 'Http' => 'http'}
+        = scf.select :check_type, { 'Http' => 'http' }
     .form-group.row
       = scf.label :user_agent, 'User Agent', class: 'col-2 col-form-label'
       .col-sm-10
@@ -29,3 +25,22 @@
       = scf.label :check_rate, 'Check Rate(seconds)', class: 'col-2 col-form-label'
       .col-sm-10
         = scf.text_field :check_rate, class: 'form-control'
+    .form-group.row
+      = scf.label :check_location_ids, 'Check Locations', class: 'col-2 col-form-label'
+      - CheckLocation.active.each do |check_location|
+        .col-sm-1
+          - if scf.object.persisted?
+            = scf.label "check_location_id_#{check_location.id}", class: 'checkbox' do
+              = check_box_tag "site[site_checks_attributes][#{scf.index}][check_location_ids][]",
+                  check_location.id,
+                  scf.object.check_location_ids.include?(check_location.id),
+                  id: "site_site_checks_attributes_#{scf.index}_check_location_id_#{check_location.id}"
+              = check_location.name.titleize
+          - else
+            = scf.label :check_location_ids do
+              = scf.check_box :check_location_ids, {multiple: true}, check_location.id
+              = check_location.name.titleize
+    .form-group.row
+      = scf.label :check_rate, 'Escalation Flow', class: 'col-2 col-form-label'
+      .col-sm-10
+        = select_tag :escalation_flow_id #TODO implement after escalation flow manager

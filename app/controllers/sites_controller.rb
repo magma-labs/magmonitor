@@ -47,11 +47,15 @@ class SitesController < ApplicationController
   end
 
   def site_check_params
+    params[:site][:site_check][:check_location_ids].delete('0')
     params[:site].require(:site_check).permit(site_check_attributes)
   end
 
   def site_check_attributes
-    %i[id name host_name port basic_auth check_type user_agent check_rate]
+    [
+        :id, :name, :target_url, :basic_auth,
+        :check_type, :user_agent, :check_rate, check_location_ids: []
+    ]
   end
 
   def find_site
