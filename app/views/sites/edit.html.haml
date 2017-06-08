@@ -1,0 +1,13 @@
+.card
+  .card-block
+    %h4.card-title
+      Edit Site
+    = form_for @site, url: org_site_path(current_org, @site) do |f|
+      = f.fields_for :site_checks do |site_checks_form|
+        = render partial: 'site_check_form', locals: {scf: site_checks_form, title: 'Edit'}
+      = f.fields_for @site.site_checks.new do |scf|
+        = render partial: 'site_check_form', locals: {scf: scf, title: 'New Check'}
+      .form-group.row
+        .offset-sm-2.col-sm-10
+          = f.submit 'Update', class: 'btn btn-primary'
+          = link_to 'Cancel', org_site_path(current_org, @site), class: 'btn btn-danger'

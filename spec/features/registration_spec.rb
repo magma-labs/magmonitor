@@ -56,6 +56,24 @@ RSpec.describe 'Registrations', type: :feature do
 
       click_on 'Details'
       expect(page).to have_content('Home Page')
+
+      click_on 'Edit'
+      fill_in 'Check Name', with: 'New check'
+      click_on 'Update'
+      expect(page).to have_content('There was an error trying to update the site')
+
+      fill_in 'Check Name', with: 'New check'
+      fill_in 'Host Name', with: 'gogle.com'
+      fill_in 'Port', with: '80'
+      fill_in 'Check Rate', with: '500'
+      click_on 'Update'
+
+      fill_in 'Host Name', with: 'google.com', match: :first
+      click_on 'Update'
+      expect(SiteCheck.find_by(host_name: 'google.com')).to be_valid
+
+      click_on 'Cancel'
+      expect(page).to have_content('google.com')
     end
   end
 end

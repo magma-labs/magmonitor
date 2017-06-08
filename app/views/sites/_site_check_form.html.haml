@@ -1,0 +1,31 @@
+.card
+  .card-block
+    %h5.card-title= title
+    .form-group.row
+      = scf.label :name, 'Check Name', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :name, class: 'form-control', placeholder: 'Check Name'
+    .form-group.row
+      = scf.label :host_name, 'Host Name', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :host_name, class: 'form-control', placeholder: 'Host Name'
+    .form-group.row
+      = scf.label :port, 'Port', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :port, class: 'form-control', value: '80'
+    .form-group.row
+      = scf.label :basic_auth, 'Basic Auth', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :basic_auth, class: 'form-control', placeholder: 'user:password'
+    .form-group.row
+      = scf.label :check_type, 'Check Type', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.select :check_type, { 'Http' => 'http'}
+    .form-group.row
+      = scf.label :user_agent, 'User Agent', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :user_agent, class: 'form-control', value: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)'
+    .form-group.row
+      = scf.label :check_rate, 'Check Rate(seconds)', class: 'col-2 col-form-label'
+      .col-sm-10
+        = scf.text_field :check_rate, class: 'form-control'

@@ -13,7 +13,7 @@
             %th Where
             %th Type
             %th Code
-            %th Time
+            %th Time ms
             %th Location
             %th Response
         %tbody
@@ -29,3 +29,27 @@
               %td= link_to 'Details', '#' #TODO(Site Check Result show)
     .card-footer
       = link_to 'Historical', org_site_path(current_org, @site)
+%hr
+.card-group
+  .card
+    .card-block
+      .card-title
+        %h5 Site Checks
+      %table.table.table-stripped.table-bordered
+        %thead
+          %tr
+            %th Name
+            %th Target
+            %th Check Type
+            %th Check Rate(Seconds)
+        %tbody
+          - @site.site_checks.each do |sc|
+            %tr
+              %td= sc.name
+              %td= sc.target
+              %td= sc.check_type
+              %td= sc.check_rate
+
+%hr
+
+= link_to 'Edit', edit_org_site_path(current_org, @site), class: 'btn btn-primary'

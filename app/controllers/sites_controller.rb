@@ -6,7 +6,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = current_org.sites.find_by(slug: params[:id])
+    @site = find_site
   end
 
   def new
@@ -23,9 +23,38 @@ class SitesController < ApplicationController
     end
   end
 
+  def edit
+    @site = find_site
+  end
+
+  def update
+    @site = find_site
+    if params[:site].key?(:site_check) && params[:site][:site_check][:name].present?
+      @site.site_checks.create(site_check_params)
+    end
+    if @site.update(site_params)
+      flash[:success] = 'Updated successfully'
+    else
+      flash[:danger] = 'There was an error trying to update the site'
+    end
+    redirect_to edit_org_site_path(current_org, @site)
+  end
+
   private
 
   def site_params
-    params.require(:site).permit(:name)
+    params.require(:site).permit(:name, site_checks_attributes: site_check_attributes)
+  end
+
+  def site_check_params
+    params[:site].require(:site_check).permit(site_check_attributes)
+  end
+
+  def site_check_attributes
+    %i[id name host_name port basic_auth check_type user_agent check_rate]
+  end
+
+  def find_site
+    current_org.sites.find_by(slug: params[:id])
   end
 end
