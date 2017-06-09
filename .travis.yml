@@ -8,6 +8,17 @@ addons:
 before_script:
   - psql -c 'create database magmonitor_test;' -U postgres
   - cp config/database.yml.travis config/database.yml
-  - bundle exec rails db:reset
+  - bundle exec rake db:schema:load
+install:
+  - bundle install
+  - nvm install node
+  - node -v
+  - npm i -g yarn
+  - yarn
+cache:
+  bundler: true
+  directories:
+    - $HOME/.yarn-cache
+  yarn: true
 after_success:
   - bundle exec codeclimate-test-reporter
