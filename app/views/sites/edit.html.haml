@@ -1,10 +1,12 @@
 .card
   .card-block
     %h4.card-title
-      Edit Site
+      = "#{@site.name} Management"
     = form_for @site, url: org_site_path(current_org, @site) do |f|
+      %h5 Site Checks Management
+      %div{id: 'site-checks-accordion', role: 'tablist', 'aria-multiselectable' => true }
       = f.fields_for :site_checks do |site_checks_form|
-        = render partial: 'site_check_form', locals: {scf: site_checks_form, title: 'Edit'}
+        = render partial: 'site_check_form', locals: {scf: site_checks_form, title: "Edit #{site_checks_form.object.name}"}
       = f.fields_for @site.site_checks.new do |scf|
         = render partial: 'site_check_form', locals: {scf: scf, title: 'New Check'}
       .form-group.row

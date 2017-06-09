@@ -1,6 +1,8 @@
 .card
-  .card-block
-    %h5.card-title= title
+  .card-header
+    = link_to title, '#', 'data-toggle' => 'collapse', 'data-parent' => '#site-checks-accordion',
+        href: "##{title.parameterize}", 'aria-expanded' => true, 'aria-controls' => "#{title.parameterize}"
+  .card-block.collapse{role: 'tabpanel', id: "#{title.parameterize}"}
     .form-group.row
       = scf.label :name, 'Check Name', class: 'col-2 col-form-label'
       .col-sm-10
