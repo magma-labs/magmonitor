@@ -9,18 +9,17 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   %body
-    %nav.nav-bar
-      Magmonitor, check site status.
+    %nav.navbar
+      %h4 Magmonitor, yet another monitoring tool.
     .container-fluid
       .row
-        %nav.col-sm-1.col-md-1.hidden-xs-down.bg-faded.sidebar
-          Welcome
-          %ul.nav.flex-column
+        %nav.navbar.navbar-light.col-sm-1.col-md-1.hidden-xs-down
+          %ul.navbar-nav
             %li.nav-item
-              Sites
-              %ul.nav.flex-column
+              = link_to 'Sites', org_sites_path(current_org), class: 'nav-item nav-link'
+              %ul.navbar-nav
                 - current_org.sites.each do |site|
-                  %li.nav-item= link_to site.name, org_site_path(org_id: current_org, id: site), class: 'nav-link'
+                  %li.nav-item{class: same_as_current_path?(org_site_path(current_org, site)) ? 'active' : ''}= link_to site.name, org_site_path(current_org, site), class: 'nav-link'
         %main.col-sm-11.offset-sm-1.col-md-9.offset-md-1.pt-3
           - flash.each do |type, message|
             .alert.alert-dismissible.fade.show{class: "alert-#{type}", role: 'alert'}

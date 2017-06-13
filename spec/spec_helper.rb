@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if ENV.fetch('ENABLE_TEST_COVERAGE', false)
+if ENV.fetch('ENABLE_TEST_COVERAGE') { false }
   require 'simplecov'
   SimpleCov.start
 end
