@@ -11,7 +11,7 @@ before_script:
   - bundle exec rake db:schema:load
 install:
   - bundle install
-  - nvm install --lts
+  - nvm install lts/boron
   - node -v
   - npm i -g yarn
   - yarn
