@@ -19,6 +19,7 @@ gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', github: 'rails/sass-rails'
+gem 'sidekiq'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 
@@ -27,6 +28,8 @@ gem 'webpacker'
 
 group :development, :test do
   gem 'capybara', '~> 2.13.0'
+  gem 'factory_girl_rails'
+  gem 'ffaker'
   gem 'pry-rails'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
@@ -46,4 +49,5 @@ end
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0', require: false
   gem 'simplecov', require: false
+  gem 'webmock'
 end
