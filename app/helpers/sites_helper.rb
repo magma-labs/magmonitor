@@ -3,7 +3,7 @@
 module SitesHelper
   def status_badge(http_response)
     result = http_response_mapping(http_response.constantize)
-    content_tag(:div, result[:text], class: "alert alert-#{result[:color]}")
+    content_tag(:div, result[:text], class: "alert-#{result[:color]}")
   end
 
   def http_response_mapping(klass)

@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-class SiteCheckHttpJob < ApplicationJob
-  queue_as :default
+class SiteCheckHttpWorker
+  include Sidekiq::Worker
+
+  # TODO: make queue name to be dynamic so pro version can have more priority
+  sidekiq_options queue: 'high', unique: :until_and_while_executing
+
   attr_reader :site_check
 
   def perform(site_check_id)

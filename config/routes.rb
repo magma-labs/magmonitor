@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -10,4 +12,6 @@ Rails.application.routes.draw do
   resources :org, controller: :organizations do
     resources :sites
   end
+
+  mount Sidekiq::Web => '/async-web'
 end

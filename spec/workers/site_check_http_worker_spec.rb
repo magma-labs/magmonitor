@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SiteCheckHttpJob, type: :job do
+RSpec.describe SiteCheckHttpWorker, type: :job do
   context '#perform' do
     let(:site_check) { FactoryGirl.create(:site_check_ok) }
     let(:last_site_check_result) { SiteCheckResult.last }
