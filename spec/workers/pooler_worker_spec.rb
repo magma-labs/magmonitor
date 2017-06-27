@@ -2,5 +2,5 @@
 
 require 'rails_helper'
 
-RSpec.describe SiteCheck, type: :model do
+RSpec.describe PoolerWorker, type: :worker do
 end

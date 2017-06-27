@@ -6,7 +6,7 @@ class CreateOrganizations < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :contact_email
       t.string :slug
-      t.boolean :active
+      t.boolean :active, default: true
 
       t.timestamps
     end

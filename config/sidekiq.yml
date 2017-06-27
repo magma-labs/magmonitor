@@ -1,0 +1,6 @@
+---
+:queues:
+  - high
+  - default
+  - slow
+  - mailers

@@ -19,8 +19,9 @@ RSpec.describe SitesHelper, type: :helper do
         expect(helper.status_badge('Net::HTTPSuccess')).to include('alert-success')
         expect(helper.status_badge('Net::HTTPInformation')).to include('alert-success')
         expect(helper.status_badge('Net::HTTPRedirection')).to include('alert-info')
-        expect(helper.status_badge('Net::HTTPClientError')).to include('alert-warning')
+        expect(helper.status_badge('Net::HTTPClientError')).to include('alert-danger')
         expect(helper.status_badge('Net::HTTPServerError')).to include('alert-danger')
+        expect(helper.status_badge('OpenSSL::SSL::SSLError')).to include('alert-danger')
       end
     end
   end
