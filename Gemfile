@@ -2,15 +2,18 @@
 
 source 'https://rubygems.org'
 
+ruby "2.4.0"
+
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.0.rc1'
+gem 'rails', '~> 5.1.0'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bundler', '1.14.6'
 gem 'coffee-rails', '~> 4.2'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
 gem 'haml'
@@ -23,7 +26,7 @@ gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker'
+# gem 'webpacker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
