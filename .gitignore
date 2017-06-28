@@ -28,3 +28,6 @@ config/database.yml
 
 # Test generated files
 coverage/*
+
+# Assets
+public/assets
