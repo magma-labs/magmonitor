@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require 'net/http'
+
 class SiteCheckHttpWorker
   include Sidekiq::Worker
 
   # TODO: make queue name to be dynamic so pro version can have more priority
-  sidekiq_options queue: 'high', unique: :until_and_while_executing
+  sidekiq_options queue: 'high', unique: :until_and_while_executing, retry: false
 
   attr_reader :site_check
 

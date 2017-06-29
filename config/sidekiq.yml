@@ -1,6 +1,6 @@
 ---
 :queues:
-  - high
-  - default
-  - slow
-  - mailers
+  - [high, 4]
+  - [default, 2]
+  - [slow, 1]
+  - [mailers, 1]
