@@ -27,6 +27,7 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

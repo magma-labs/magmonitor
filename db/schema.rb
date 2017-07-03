@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170627220217) do
     t.string "name"
     t.string "contact_email"
     t.string "slug"
-    t.boolean "active"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
