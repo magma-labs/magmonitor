@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby "2.4.0"
+ruby '2.4.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -15,9 +15,11 @@ gem 'rails', '~> 5.1.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bundler', '1.14.6'
 gem 'coffee-rails', '~> 4.2'
+gem 'devise'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
+gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
@@ -27,7 +29,6 @@ gem 'sidekiq-scheduler'
 gem 'sidekiq-unique-jobs'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
-gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
