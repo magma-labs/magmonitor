@@ -1,0 +1,7 @@
+%nav.navbar.navbar-light.col-sm-1.col-md-1.hidden-xs-down
+  %ul.navbar-nav
+    %li.nav-item
+      = link_to 'Sites', org_sites_path(current_org), class: 'nav-item nav-link'
+      %ul.navbar-nav
+        - current_org.sites.each do |site|
+          %li.nav-item{class: same_as_current_path?(org_site_path(current_org, site)) ? 'active' : ''}= link_to site.name, org_site_path(current_org, site), class: 'nav-link'
