@@ -7,6 +7,7 @@ class SitesController < ApplicationController
 
   def show
     @site = find_site
+    @site_checks = Magmonitor::SiteStatsService.new(@site).by_site_check
   end
 
   def new

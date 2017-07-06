@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Sidekiq.configure_server do |config|
-  config.options[:concurrency] = ENV.fetch('SIDEKIQ_CONCURRENCY', 5)
+  config.options[:concurrency] = ENV.fetch('SIDEKIQ_CONCURRENCY', 5).to_i
 
   database_url = ENV['DATABASE_URL']
   if database_url

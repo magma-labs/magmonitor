@@ -1,6 +1,21 @@
 %h4= @site.name
 
 .card-group
+  - @site_checks.each do |site|
+    .col-sm-2
+      .card
+        .card-block
+          %h6.card-title= site.name
+        .card-block
+          %h6.card-title Last 24 hours
+          .card-uptime
+            = "#{site.uptime} %"
+            %small Uptime
+          .card-load-time
+            = "#{site.load_time} ms"
+            %small Load time
+
+.card-group
   .card
     .card-block
       .card-title

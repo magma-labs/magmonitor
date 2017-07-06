@@ -15,6 +15,8 @@ class SiteCheckHttpWorker
 
     res, time = perform_check(site_check.target_url)
     site_check.site_check_results.create(payload(res, time.real))
+  rescue => e
+    handle_error(e)
   end
 
   private
@@ -31,6 +33,13 @@ class SiteCheckHttpWorker
 
   def location
     @site_check.check_locations.find_by(name: ENV.fetch('CHECK_LOCATION_NAME', 'America'))
+  end
+
+  def handle_error(e)
+    site_check.site_check_results.create(raw_response: e.to_json,
+                                         response_code: 598,
+                                         http_response: e.class,
+                                         check_location_id: location.id)
   end
 
   def perform_check(target_url, follow_redirection_limit = 10)

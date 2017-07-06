@@ -16,7 +16,7 @@ module SitesHelper
     elsif klass <= Net::HTTPServerError
       { text: 'Down', color: 'danger' }
     else
-      { text: 'N/A', color: 'danger' }
+      { text: 'Error', color: 'danger' }
     end
   end
 end
