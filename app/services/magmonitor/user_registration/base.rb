@@ -13,9 +13,6 @@ module Magmonitor
         User.find_or_create_by(email: user_email) do |user|
           user.name = user_name
           user.image = user_image
-          user.provider = user_provider
-          user.uid = user_uid
-          user.password = Devise.friendly_token[0, 20]
         end
       end
     end
