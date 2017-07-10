@@ -16,13 +16,4 @@ class User < ApplicationRecord
   def find_organization(organization_id = '')
     organizations.find_by(slug: organization_id) || organizations.first
   end
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.name = auth.info.name
-      user.image = auth.info.image
-    end
-  end
 end
