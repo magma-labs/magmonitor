@@ -2,7 +2,8 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :check_user_registration, :authenticate_user!
+  before_action :authenticate_user!
+  before_action :check_user_registration
 
   helper_method :check_user_registration, :current_org
 

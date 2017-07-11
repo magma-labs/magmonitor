@@ -15,8 +15,8 @@ module Users
     end
 
     def perform_registration(klass)
-      user = klass.new(request.env['omniauth.auth']).persist
-      sign_in_and_redirect user, event: :authentication
+      @user = klass.new(request.env['omniauth.auth']).persist
+      sign_in_and_redirect @user, event: :authentication
     end
   end
 end
