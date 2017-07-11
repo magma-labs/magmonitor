@@ -18,7 +18,6 @@ module Magmonitor
       end
 
       def persist
-        binding.pry
         User.find_or_create_by(email: user_email) do |user|
           user.name = user_name
           user.image = user_image
