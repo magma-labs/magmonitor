@@ -25,7 +25,7 @@ RSpec.describe 'Registrations', type: :feature do
   context 'when using google_auth2' do
     let(:user) { User.find_by email: 'john@company_name.com' }
     it 'creates a new user if not found' do
-      visit '/auth/google_oauth2'
+      visit '/users/auth/google_oauth2'
       # follow_redirect!
       expect(user.name).to eq('John Doe')
       # follow_redirect!
