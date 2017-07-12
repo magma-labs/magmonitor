@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-ruby "2.4.0"
+ruby '2.4.0'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
@@ -54,5 +54,6 @@ end
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0', require: false
   gem 'simplecov', require: false
+  gem 'timecop'
   gem 'webmock'
 end

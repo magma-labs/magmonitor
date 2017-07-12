@@ -7,14 +7,16 @@
         .card-block
           %h6.card-title= site.name
         .card-block
-          %h6.card-title Last 24 hours
+          %h6.card-title
+            Last 24 hours from
+            = site.location_name
           .card-uptime
-            = "#{site.uptime} %"
+            = "#{site.uptime.to_f.round(1)} %"
             %small Uptime
           .card-load-time
-            = "#{site.load_time} ms"
+            = "#{site.load_time.to_f.round(1)} ms"
             %small Load time
-
+%hr
 .card-group
   .card
     .card-block
@@ -64,7 +66,5 @@
               %td= sc.target_url
               %td= sc.check_type
               %td= sc.check_rate
-
-%hr
-
-= link_to 'Edit', edit_org_site_path(current_org, @site), class: 'btn btn-primary'
+    .card-footer
+      = link_to 'Edit', edit_org_site_path(current_org, @site), class: 'btn btn-primary'

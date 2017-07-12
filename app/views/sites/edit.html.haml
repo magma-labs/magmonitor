@@ -10,6 +10,7 @@
       = f.fields_for @site.site_checks.new do |scf|
         = render partial: 'site_check_form', locals: {scf: scf, title: 'New Check'}
       .form-group.row
-        .offset-sm-2.col-sm-10
+        .offset-sm-1.col-sm-10
           = f.submit 'Update', class: 'btn btn-primary'
-          = link_to 'Cancel', org_site_path(current_org, @site), class: 'btn btn-danger'
+  .card-footer
+    = link_to 'Back', org_site_path(current_org, @site), class: 'btn btn-primary'

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable all
 module SitesHelper
   def status_badge(http_response)
     result = http_response_mapping(http_response.constantize)
