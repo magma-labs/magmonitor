@@ -22,6 +22,16 @@ RSpec.describe 'Registrations', type: :feature do
     OmniAuth.config.mock_auth[:google_oauth2] = OmniAuth::AuthHash.new(google_oauth2)
   end
 
+  context 'When creates an user' do
+    let(:user) { User.find_by email: 'test@company_name.com' }
+    it 'with invalid oauth credentials' do
+      OmniAuth.config.mock_auth[:google_oauth2] = :invalid_credentials
+      visit '/users/auth/google_oauth2'
+      # follow_redirect!
+      expect(page).to have_content('You need to sign in or sign up before continuing')
+    end
+  end
+
   context 'When creates an user and register an organization' do
     let(:user) { User.find_by email: 'test@company_name.com' }
     it 'with invalid values' do
