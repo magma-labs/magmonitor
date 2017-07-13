@@ -2,6 +2,9 @@
 
 require 'net/http'
 
+# Object responsible to perform real checks against sites, used when the site check is
+# type http, it checks ssl, availability and response time
+# :reek:InstanceVariableAssumption { enabled: false }
 class SiteCheckHttpWorker
   include Sidekiq::Worker
 
@@ -15,10 +18,13 @@ class SiteCheckHttpWorker
 
     res, time = perform_check(site_check.target_url)
     site_check.site_check_results.create(payload(res, time.real))
+  rescue => exception
+    handle_error(exception)
   end
 
   private
 
+  # :reek:FeatureEnvy { enabled: false }
   def payload(result, response_time)
     {
         raw_response: result.to_json,
@@ -31,6 +37,13 @@ class SiteCheckHttpWorker
 
   def location
     @site_check.check_locations.find_by(name: ENV.fetch('CHECK_LOCATION_NAME', 'America'))
+  end
+
+  def handle_error(exception)
+    site_check.site_check_results.create(raw_response: exception.to_json,
+                                         response_code: 598,
+                                         http_response: exception.class,
+                                         check_location_id: location.id)
   end
 
   def perform_check(target_url, follow_redirection_limit = 10)

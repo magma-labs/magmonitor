@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170704030524) do
 
   create_table "site_check_results", force: :cascade do |t|
     t.string "raw_response"
-    t.string "response_code"
+    t.integer "response_code"
     t.string "http_response"
     t.integer "response_time"
     t.integer "check_location_id"

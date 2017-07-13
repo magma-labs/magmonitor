@@ -148,7 +148,7 @@ RSpec.describe 'Registrations', type: :feature do
       expect(site_check).to be_valid
       expect(site_check.check_location_ids).not_to be_empty
 
-      click_on 'Cancel'
+      click_on 'Back'
       expect(page).to have_content('google.com')
     end
   end
