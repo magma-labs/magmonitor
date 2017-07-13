@@ -16,8 +16,7 @@ module Magmonitor
       total = scope.except_redirects.count
       if total.positive?
         good_ones = scope.success.count
-        with_errors = scope.with_errors.count
-        (100 * (good_ones - with_errors) / total).round(3)
+        (100 * (good_ones) / total).round(3)
       else
         'N/A'
       end
