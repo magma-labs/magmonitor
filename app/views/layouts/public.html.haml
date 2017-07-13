@@ -13,4 +13,6 @@
       Magmonitor, check site status.
     .container-fluid
       .row
+        %main.col-sm-11.offset-sm-1.col-md-9.offset-md-1.pt-3
+          = render 'shared/errors'
         = yield
