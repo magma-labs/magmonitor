@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
+# :reek:UtilityFunction { enabled: false }
 class PoolerWorker
   include Sidekiq::Worker
-  sidekiq_options queue: 'high'
+  sidekiq_options queue: 'high', retry: false
 
+  # In theory, we will execute multiple instances of sidekiq across multiple data centers
+  # Each datacenter will have its own redis server but will share same database
+  # When we start sidekiq, we'll define what location name the data center belongs to
   def perform(*_args)
-    CheckLocation.all.each do |check_location|
-      redis_connection = proc { Redis.new(url: check_location.redis_url) }
-      redis_pool = ConnectionPool.new(size: 1, &redis_connection)
-      Sidekiq::Client.via(redis_pool) do
-        SiteCheckQuery.new(check_location.id).sites_to_check.each do |site_check|
-          SiteCheckHttpWorker.perform_async site_check.id
-        end
-      end
+    check_location = CheckLocation.find_by name: ENV.fetch('CHECK_LOCATION_NAME')
+    SiteCheckQuery.new(check_location.id).sites_to_check.each do |site_check|
+      SiteCheckHttpWorker.perform_async site_check.id
     end
   end
 end

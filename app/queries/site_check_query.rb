@@ -10,6 +10,6 @@ class SiteCheckQuery
   def sites_to_check(check_rate = 60)
     SiteCheck.joins(:check_locations)
         .where(sites_check_locations: { check_location_id: @location_id })
-        .where('(? % check_rate) = 0', Time.now.min * check_rate)
+        .where('(? % check_rate) < 5', Time.now.min * check_rate)
   end
 end

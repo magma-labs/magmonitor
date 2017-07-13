@@ -7,8 +7,17 @@ NestedIterators:
   - tap
 DuplicateMethodCall:
   max_calls: 2
+TooManyStatements:
+  enabled: true
+  exclude:
+  - initialize
+  max_statements: 10
+
 exclude_paths:
   - 'db/migrate'
+"config":
+  IrresponsibleModule:
+    enabled: false
 "app/controllers":
   IrresponsibleModule:
     enabled: false

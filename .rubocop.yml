@@ -15,7 +15,7 @@ Metrics/LineLength:
 Style/Documentation:
   Enabled: false
 
-Style/IndentHash:
+Layout/IndentHash:
   EnforcedStyle: special_inside_parentheses
   SupportedStyles:
     - special_inside_parentheses
@@ -23,7 +23,7 @@ Style/IndentHash:
     - align_braces
   IndentationWidth: 4
 
-Style/IndentArray:
+Layout/IndentArray:
   EnforcedStyle: special_inside_parentheses
   SupportedStyles:
     - special_inside_parentheses
@@ -34,7 +34,7 @@ Style/IndentArray:
 Style/BlockComments:
   Enabled: false
 
-Style/MultilineMethodCallIndentation:
+Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
   SupportedStyles:
     - indented

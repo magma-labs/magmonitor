@@ -1,14 +1,24 @@
 .card-group
   - @sites.each do |site|
+    - site_stats_service = Magmonitor::SiteStatsService.new(site)
     .col-sm-2
       .card
         .card-block
-          %h4.card-title= site.name
+          %h6.card-title= link_to site.name, org_site_path(current_org, site)
+        .card-block
+          %h6.card-title Last 24 hours
+          .card-uptime
+            = "#{site_stats_service.uptime_since} %"
+            %small Uptime
+          .card-load-time
+            = "#{site_stats_service.average_load_time} ms"
+            %small Load time
         .card-footer
-          = link_to 'Details', org_site_path(current_org, site)
-          = link_to 'Edit', edit_org_site_path(current_org, site)
+          = link_to 'Details', org_site_path(current_org, site), class: 'btn'
+          = link_to 'Edit', edit_org_site_path(current_org, site), class: 'btn'
   .col-sm-2
     .card
       .card-block
-        %h4.card-title New Site
-        = link_to 'New', new_org_site_path(current_org)
+        %h6.card-title New Site
+      .card-footer
+        = link_to 'New', new_org_site_path(current_org), class: 'btn'

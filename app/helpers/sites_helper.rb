@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable all
 module SitesHelper
   def status_badge(http_response)
     result = http_response_mapping(http_response.constantize)
@@ -16,7 +17,7 @@ module SitesHelper
     elsif klass <= Net::HTTPServerError
       { text: 'Down', color: 'danger' }
     else
-      { text: 'N/A', color: 'danger' }
+      { text: 'Error', color: 'danger' }
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170627220217) do
+ActiveRecord::Schema.define(version: 20170629154035) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20170627220217) do
 
   create_table "site_check_results", force: :cascade do |t|
     t.string "raw_response"
-    t.string "response_code"
+    t.integer "response_code"
     t.string "http_response"
     t.integer "response_time"
     t.integer "check_location_id"
