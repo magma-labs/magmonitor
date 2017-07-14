@@ -4,4 +4,13 @@ module ApplicationHelper
   def same_as_current_path?(path)
     request.path_info.include? path
   end
+
+  def flash_class(level)
+    case level
+    when 'success' then 'alert alert-success'
+    when 'warning' then 'alert alert-warning'
+    when 'info' then 'alert alert-info'
+    when 'error', 'alert', 'danger' then 'alert alert-danger'
+    end
+  end
 end

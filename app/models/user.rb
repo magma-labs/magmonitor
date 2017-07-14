@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  devise :omniauthable, omniauth_providers: %i[github google_oauth2]
+
   has_many :memberships
   has_many :organizations, through: :memberships
 

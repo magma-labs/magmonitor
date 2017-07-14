@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+class MagmonitorMailer < Devise::Mailer
+  helper :application
+  include Devise::Controllers::UrlHelpers
+  default template_path: 'devise/mailer'
+end
