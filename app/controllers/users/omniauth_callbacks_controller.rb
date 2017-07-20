@@ -6,6 +6,7 @@ module Users
       perform_registration(Magmonitor::UserRegistration::GithubService)
     end
 
+    # :reek:UncommunicativeMethodName { enabled: false }
     def google_oauth2
       perform_registration(Magmonitor::UserRegistration::GoogleOauth2Service)
     end

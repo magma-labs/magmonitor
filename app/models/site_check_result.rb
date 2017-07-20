@@ -14,4 +14,6 @@ class SiteCheckResult < ApplicationRecord
   scope :except_redirects, -> { where.not('response_code between 300 and 399') }
 
   scope :since, ->(time) { where('site_check_results.created_at >= ?', time) }
+
+  delegate :name, to: :check_location, prefix: true
 end

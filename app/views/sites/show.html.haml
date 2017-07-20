@@ -22,30 +22,10 @@
     .card-block
       .card-title
         %h4 Latest Checks
-      %table.table.table-stripped.table-bordered
-        %thead
-          %tr
-            %th Status
-            %th When
-            %th Where
-            %th Type
-            %th Code
-            %th Time ms
-            %th Location
-            %th Response
-        %tbody
-          - @site.last_site_check_results.each do |site_check_result|
-            %tr
-              %td= status_badge(site_check_result.http_response)
-              %td= site_check_result.created_at
-              %td= site_check_result.site_check.target_url
-              %td= site_check_result.site_check.check_type
-              %td= site_check_result.response_code
-              %td= site_check_result.response_time
-              %td= site_check_result.check_location_name
-              %td= link_to 'Details', '#' #TODO(Site Check Result show)
-    .card-footer
-      = link_to 'Historical', org_site_path(current_org, @site)
+        = render partial: 'historical_checks/site_check_results_table', locals: {site_check_results: @site.last_site_check_results}
+      .card-footer
+        = link_to 'Historical', org_site_historical_checks_path(current_org, @site)
+
 %hr
 .card-group
   .card

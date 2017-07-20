@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :site_check_result do
-    raw_response({name: FFaker::Venue.name}.to_json)
+    raw_response({ name: FFaker::Venue.name }.to_json)
     response_time 400
 
     trait :site_down do

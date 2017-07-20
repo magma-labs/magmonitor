@@ -13,12 +13,13 @@ end
 gem 'rails', '~> 5.1.0'
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
-gem 'bundler', '1.14.6'
+gem 'bundler'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'

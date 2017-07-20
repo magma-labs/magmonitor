@@ -87,11 +87,25 @@ RSpec.describe 'Registrations', type: :feature do
       click_on 'Update'
 
       site_check = SiteCheck.find_by(target_url: 'google.com')
+      attrs = {
+          response_code: '200',
+          check_location: CheckLocation.first,
+          http_response: 'Net::HTTPSuccess',
+          raw_response: "{}"
+      }
+      site_check.site_check_results.create(attrs)
       expect(site_check).to be_valid
       expect(site_check.check_location_ids).not_to be_empty
 
       click_on 'Back'
       expect(page).to have_content('google.com')
+
+      click_on 'Historical'
+      expect(page).to have_content('Historical Checks')
+      click_on 'Back'
+
+      click_on 'Details', match: :first
+      expect(page).to have_content('Response Code')
     end
   end
 
