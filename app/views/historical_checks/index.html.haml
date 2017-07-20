@@ -1,0 +1,13 @@
+%h4= @site.name
+
+%hr
+.card-group
+  .card
+    .card-block
+      .card-title
+        %h4 Historical Checks
+        = render partial: 'site_check_results_table', locals: {site_check_results: @historical_site_checks}
+      .card-footer
+        = paginate @historical_site_checks
+    .card-block
+      = link_to 'Back', org_site_path(current_org, @site)

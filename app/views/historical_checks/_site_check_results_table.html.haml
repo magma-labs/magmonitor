@@ -1,0 +1,22 @@
+%table.table.table-stripped.table-bordered
+  %thead
+    %tr
+      %th Status
+      %th When
+      %th Where
+      %th Type
+      %th Code
+      %th Time ms
+      %th Location
+      %th Response
+  %tbody
+    - site_check_results.each do |site_check_result|
+      %tr
+        %td= status_badge(site_check_result.http_response)
+        %td= site_check_result.created_at
+        %td= site_check_result.site_check.target_url
+        %td= site_check_result.site_check.check_type
+        %td= site_check_result.response_code
+        %td= site_check_result.response_time
+        %td= site_check_result.check_location_name
+        %td= link_to 'Details', org_site_historical_check_path(current_org, @site, site_check_result)

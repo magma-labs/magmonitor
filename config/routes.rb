@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   resource :registration_flow, controller: :registration_flow, only: %i[new create]
 
   resources :org, controller: :organizations do
-    resources :sites
+    resources :sites do
+      resources :historical_checks, only: %i[index show]
+    end
   end
 
   mount Sidekiq::Web => '/async-web'

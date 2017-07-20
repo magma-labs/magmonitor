@@ -4,7 +4,7 @@ module Magmonitor
   module UserRegistration
     class GithubService < Base
       def user_name
-        @params[:info][:nickname]
+        params[:info][:nickname]
       end
     end
   end

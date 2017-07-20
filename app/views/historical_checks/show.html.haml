@@ -1,0 +1,34 @@
+%h4= @site.name
+
+%hr
+.card-group
+  .card
+    .card-header
+      %h4 Site Check Details
+    .card-block
+      %ul.list-group.list-group-flush
+        %li.list-group-item
+          %h5
+            Response Code:
+            = @check.response_code
+        %li.list-group-item
+          %h5
+            HTTP Response:
+            = @check.http_response
+        %li.list-group-item
+          %h5
+            Response Time:
+            = @check.response_time
+            ms
+        %li.list-group-item
+          %h5
+            Location:
+            = @check.check_location_name
+        %li.list-group-item
+          %h5
+            Response Raw
+        %li.list-group-item
+          %pre
+            = JSON.pretty_generate(ActiveSupport::JSON.decode(@check.raw_response))
+    .card-footer
+      = link_to 'Back', org_site_historical_checks_path(current_org, @site)
