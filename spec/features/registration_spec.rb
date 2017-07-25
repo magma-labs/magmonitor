@@ -91,7 +91,7 @@ RSpec.describe 'Registrations', type: :feature do
           response_code: '200',
           check_location: CheckLocation.first,
           http_response: 'Net::HTTPSuccess',
-          raw_response: "{}"
+          raw_response: '{}'
       }
       site_check.site_check_results.create(attrs)
       expect(site_check).to be_valid

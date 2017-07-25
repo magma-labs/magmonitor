@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type'}/
+  %body
+    %p
+      You have received a new invitation to #{@invite.organization.name}
+    %p
+      Pleace accept by clicking on the next link:
+    %a{href: @url}
+      = @url
