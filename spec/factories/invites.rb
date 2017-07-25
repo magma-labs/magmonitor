@@ -2,5 +2,6 @@
 
 FactoryGirl.define do
   factory :invite do
+    email FFaker::Internet.email
   end
 end

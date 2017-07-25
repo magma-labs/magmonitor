@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+class EmailValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    regexp = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+    record.errors[attribute] << (options[:message] || 'is not an email') unless value.match?(regexp)
+  end
+end
+
 class Invite < ApplicationRecord
   before_create :generate_token
   before_save :check_user_existence
   validate :check_user_organization
+  validates :email, presence: true, email: true
 
   belongs_to :sender, class_name: 'User'
   belongs_to :recipient, class_name: 'User', optional: true

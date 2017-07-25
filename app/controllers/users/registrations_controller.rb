@@ -14,7 +14,7 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     prepend DeviseRegistrations
 
-    before_action :set_token, only: [:new, :create]
+    before_action :set_token, only: %i[new create]
     around_action :set_user_resource, only: [:create]
 
     protected
