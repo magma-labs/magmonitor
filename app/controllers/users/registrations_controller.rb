@@ -2,6 +2,7 @@
 
 module Users
   module DeviseRegistrations
+    # rubocop:disable Metrics/MethodLength, AbcSize, PerceivedComplexity
     def new
       @token = params[:invite_token]
       build_resource({})
@@ -9,38 +10,31 @@ module Users
       yield resource if block_given?
       respond_with resource
     end
-
-    def create # rubocop:disable Metrics/MethodLength, AbcSize, PerceivedComplexity
-      token = params[:invite_token]
-      invite = Invite.find_by_token(token)
-      build_resource(sign_up_params)
-      resource.email = invite.email if invite
-      resource.save
-      unless token.nil?
-        org = invite.organization
-        resource.organizations.push(org)
-        resource.fully_registered = true
-      end
-      yield resource if block_given?
-      if resource.persisted?
-        if resource.active_for_authentication?
-          set_flash_message! :notice, :signed_up
-          sign_up(resource_name, resource)
-          respond_with resource, location: after_sign_up_path_for(resource)
-        else
-          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-          expire_data_after_sign_in!
-          respond_with resource, location: after_inactive_sign_up_path_for(resource)
-        end
-      else
-        clean_up_passwords resource
-        set_minimum_password_length
-        respond_with resource
-      end
-    end
   end
 
   class RegistrationsController < Devise::RegistrationsController
     prepend DeviseRegistrations
+    around_action :set_user_resource, only: [:create]
+
+    protected
+
+    def sign_up_params
+      signup_params = devise_parameter_sanitizer.sanitize(:sign_up)
+      @invite = Invite.find_by_token(params[:invite_token])
+      signup_params = signup_params.merge(email: @invite.email) if @invite
+      signup_params
+    end
+
+    private
+
+    def set_user_resource
+      token = params[:invite_token]
+      yield
+      return if token.nil?
+      org = @invite.organization
+      resource.organizations.push(org)
+      resource.fully_registered = true
+      resource.save
+    end
   end
 end

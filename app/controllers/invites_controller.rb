@@ -21,7 +21,7 @@ class InvitesController < ApplicationController
 
   def accept_invite
     if @invite
-      invite.recipient.organizations.push(invite.organization)
+      @invite.recipient.organizations.push(@invite.organization)
     else
       flash[:danger] = 'Invalid token'
     end
