@@ -2,13 +2,14 @@
 
 class InvitesController < ApplicationController
   before_action :check_user_registration, :authenticate_user!
+  before_action :fetch_current_invite, only: [:accept_invite]
+  before_action :fetch_invite_from_params, only: [:create]
 
   def index
     @invite = Invite.new
   end
 
   def create
-    @invite = Magmonitor::InvitesService.new(invite_data).perform_invitation
     if @invite.errors.empty?
       flash[:success] = "An invitation has been sent to #{@invite.email}"
       redirect_to root_path
@@ -19,8 +20,7 @@ class InvitesController < ApplicationController
   end
 
   def accept_invite
-    invite = Invite.find_by_token(params[:invite_token])
-    if invite
+    if @invite
       invite.recipient.organizations.push(invite.organization)
     else
       flash[:danger] = 'Invalid token'
@@ -46,5 +46,13 @@ class InvitesController < ApplicationController
         accept_path: accept_invite_path(invite_token: ''),
         new_user_path: new_user_registration_path
     }
+  end
+
+  def fetch_invite_from_params
+    @invite = Magmonitor::InvitesService.new(invite_data).perform_invitation
+  end
+
+  def fetch_current_invite
+    @invite = Invite.find_by_token(params[:invite_token])
   end
 end

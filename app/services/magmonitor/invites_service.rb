@@ -11,11 +11,7 @@ module Magmonitor
     def perform_invitation
       invite = Invite.new(@invite_data[:invite_params])
       if invite.save
-        url = if !invite.recipient.nil?
-                build_invitation_url(@invite_data[:accept_path], invite.token)
-              else
-                build_invitation_url(@invite_data[:new_user_path], invite.token)
-              end
+        url = build_invitation_url(invite, @invite_data[:accept_path], invite.token)
         InviteMailer.create_invite(invite, url).deliver
       end
       invite
@@ -23,8 +19,12 @@ module Magmonitor
 
     private
 
-    def build_invitation_url(url, token)
-      "#{@invite_data[:base_url]}/#{url}?invite_token=#{token}"
+    def build_invitation_url(invite, token)
+      if !invite.recipient.nil?
+        "#{@invite_data[:base_url]}/#{@invite_data[:accept_path]}?invite_token=#{token}"
+      else
+        "#{@invite_data[:base_url]}/#{@invite_data[:new_user_path]}?invite_token=#{token}"
+      end
     end
   end
 end
