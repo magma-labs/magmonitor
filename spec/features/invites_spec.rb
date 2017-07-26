@@ -41,7 +41,7 @@ RSpec.describe 'Invites', type: :feature do
       email: 'invited_user@user.com',
       organization_id: user.organizations.first.id,
       sender_id: user.id,
-      recipient_id: nil,
+      recipient_id: nil
     )
   end
 

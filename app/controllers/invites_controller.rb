@@ -11,11 +11,9 @@ class InvitesController < ApplicationController
 
   def create
     if @invite.errors.empty?
-      flash[:success] = "An invitation has been sent to #{@invite.email}"
-      redirect_to root_path
+      redirect_on_invite(root_path, :success, "An invitation has been sent to #{@invite.email}")
     else
-      flash[:danger] = @invite.errors.full_messages.join(', ')
-      redirect_to invites_path
+      redirect_on_invite(invites_path, :danger, @invite.errors.full_messages.join(', '))
     end
   end
 
@@ -54,5 +52,10 @@ class InvitesController < ApplicationController
 
   def fetch_current_invite
     @invite = Invite.find_by_token(params[:invite_token])
+  end
+
+  def redirect_on_invite(url, message_type, message)
+    flash[message_type] = message
+    redirect_to url
   end
 end
