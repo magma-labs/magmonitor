@@ -51,6 +51,7 @@ RSpec.describe 'Invites', type: :feature do
     ActionMailer::Base.perform_deliveries = true
     ActionMailer::Base.deliveries = []
     sign_in user
+    user.memberships.first.update_attribute(:role, 'owner')
   end
 
   after(:all) do
@@ -85,6 +86,13 @@ RSpec.describe 'Invites', type: :feature do
         fill_in 'invite[email]', with: another_user.email
         click_on 'Send'
         expect(page).to have_content("An invitation has been sent to #{another_user.email}")
+      end
+    end
+    describe 'When trying to create an invite' do
+      it 'but current user is not an organization owner' do
+        user.memberships.first.update_attribute(:role, nil)
+        visit '/invites'
+        expect(page).not_to have_content('Invites')
       end
     end
   end
