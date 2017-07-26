@@ -4,6 +4,7 @@ class InvitesController < ApplicationController
   before_action :check_user_registration, :authenticate_user!
   before_action :fetch_current_invite, only: [:accept_invite]
   before_action :fetch_invite_from_params, only: [:create]
+  before_action :check_user_organization, only: %i[index create]
 
   def index
     @invite = Invite.new
@@ -57,5 +58,10 @@ class InvitesController < ApplicationController
   def redirect_on_invite(url, message_type, message)
     flash[message_type] = message
     redirect_to url
+  end
+
+  def check_user_organization
+    return if user_is_organization_owner?
+    redirect_to root_path
   end
 end

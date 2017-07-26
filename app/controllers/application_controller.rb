@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :check_user_registration
 
-  helper_method :check_user_registration, :current_org
+  helper_method :check_user_registration,
+                :current_org,
+                :user_organizations,
+                :user_is_organization_owner?
 
   private
 
@@ -15,5 +18,17 @@ class ApplicationController < ActionController::Base
 
   def current_org
     @current_org ||= current_user.find_organization(params[:org_id])
+  end
+
+  def user_organizations
+    @user_organizations ||= current_user.organizations
+  end
+
+  def user_is_organization_owner?
+    current_user
+        .memberships
+        .where(organization: current_org, user: current_user, role: 'owner')
+        .count
+        .positive?
   end
 end

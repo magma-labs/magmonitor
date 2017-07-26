@@ -1,0 +1,6 @@
+.btn-group
+  %button.btn.btn-secondary.dropdown-toggle{'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown'}
+    My account
+    %span.caret
+  .dropdown-menu
+    = link_to('Sign out', destroy_user_session_path, class: 'dropdown-item')
