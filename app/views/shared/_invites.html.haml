@@ -1,2 +1,2 @@
-- if user_is_organization_owner?
+- if current_user.owner_of?(current_org)
   = link_to 'New invite', invites_path, class: 'nav-item nav-link'

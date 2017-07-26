@@ -2,7 +2,6 @@
 
 module Users
   module DeviseRegistrations
-    # rubocop:disable Metrics/MethodLength, AbcSize, PerceivedComplexity
     def new
       build_resource({})
       resource.email = Invite.find_by_token(@token).email if @token
@@ -34,7 +33,7 @@ module Users
 
     def set_user_resource
       yield
-      return if @token.nil?
+      return unless @token
       org = @invite.organization
       resource.organizations.push(org)
       resource.fully_registered = true

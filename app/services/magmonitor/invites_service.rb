@@ -20,7 +20,7 @@ module Magmonitor
     private
 
     def build_invitation_url(invite, token)
-      if !invite.recipient.nil?
+      if invite.recipient
         "#{@invite_data[:base_url]}/#{@invite_data[:accept_path]}#{token}"
       else
         "#{@invite_data[:base_url]}/#{@invite_data[:new_user_path]}?invite_token=#{token}"

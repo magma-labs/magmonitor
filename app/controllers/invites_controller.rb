@@ -3,7 +3,6 @@
 class InvitesController < ApplicationController
   before_action :check_user_registration, :authenticate_user!
   before_action :fetch_current_invite, only: [:accept_invite]
-  before_action :fetch_invite_from_params, only: [:create]
   before_action :check_user_organization, only: %i[index create]
 
   def index
@@ -11,6 +10,7 @@ class InvitesController < ApplicationController
   end
 
   def create
+    @invite = Magmonitor::InvitesService.new(invite_data).perform_invitation
     if @invite.errors.empty?
       redirect_on_invite(root_path, :success, "An invitation has been sent to #{@invite.email}")
     else
@@ -47,10 +47,6 @@ class InvitesController < ApplicationController
     }
   end
 
-  def fetch_invite_from_params
-    @invite = Magmonitor::InvitesService.new(invite_data).perform_invitation
-  end
-
   def fetch_current_invite
     @invite = Invite.find_by_token(params[:invite_token])
   end
@@ -61,7 +57,7 @@ class InvitesController < ApplicationController
   end
 
   def check_user_organization
-    return if user_is_organization_owner?
+    return if org_owned_by_current_user?
     redirect_to root_path
   end
 end

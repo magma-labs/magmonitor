@@ -16,4 +16,8 @@ class User < ApplicationRecord
   def find_organization(organization_id = '')
     organizations.find_by(slug: organization_id) || organizations.first
   end
+
+  def owner_of?(organization)
+    memberships.find_by(organization_id: organization.id).owner?
+  end
 end

@@ -3,5 +3,5 @@
     Organizations
     %span.caret
   .dropdown-menu
-    - user_organizations.each do |organization|
+    - current_user.organizations.each do |organization|
       = link_to(organization.name, org_sites_path(org_id: organization.slug), class: 'dropdown-item')

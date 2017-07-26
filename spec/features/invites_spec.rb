@@ -71,7 +71,7 @@ RSpec.describe 'Invites', type: :feature do
         visit '/invites'
         fill_in 'invite[email]', with: 'invalidemail.com'
         click_on 'Send'
-        expect(page).to have_content('Email is not an email')
+        expect(page).to have_content('Email is invalid')
       end
     end
     describe 'When inviting a user already registered' do
@@ -79,7 +79,7 @@ RSpec.describe 'Invites', type: :feature do
         visit '/invites'
         fill_in 'invite[email]', with: user.email
         click_on 'Send'
-        expect(page).to have_content('Email already exists on MagmaLabs')
+        expect(page).to have_content('Email already a member of MagmaLabs')
       end
       it 'creates a new invitation for a registered user' do
         visit '/invites'
