@@ -44,3 +44,6 @@ exclude_paths:
 "spec/mailers/previews":
   UtilityFunction:
     enabled: false
+"spec/support":
+  UtilityFunction:
+    enabled: false

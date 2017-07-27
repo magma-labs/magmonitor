@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :check_user_registration
 
-  helper_method :check_user_registration, :current_org
+  helper_method :check_user_registration,
+                :current_org
 
   private
 
@@ -15,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def current_org
     @current_org ||= current_user.find_organization(params[:org_id])
+  end
+
+  def org_owned_by_current_user?
+    current_user.owner_of?(current_org)
   end
 end

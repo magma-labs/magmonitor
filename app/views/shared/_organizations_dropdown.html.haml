@@ -1,0 +1,7 @@
+.btn-group
+  %button.btn.btn-primary.dropdown-toggle{'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown'}
+    Organizations
+    %span.caret
+  .dropdown-menu
+    - current_user.organizations.each do |organization|
+      = link_to(organization.name, org_sites_path(org_id: organization.slug), class: 'dropdown-item')

@@ -7,7 +7,7 @@
         = devise_error_messages!
         .form-group
           = f.label :email
-          = f.email_field :email, autofocus: true, class: 'form-control'
+          = f.email_field :email, autofocus: true, class: 'form-control', disabled: resource.email != nil
         .form-group
           = f.label :password
           - if @minimum_password_length
@@ -17,5 +17,7 @@
         .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, autocomplete: 'off', class: 'form-control'
+          - if @token != nil
+            = hidden_field_tag :invite_token, @token
         = f.submit  t('.sign_up', default: 'Sign up'), class: 'btn btn-primary'
   = render 'devise/shared/links'
