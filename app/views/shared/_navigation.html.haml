@@ -3,6 +3,8 @@
     %li.nav-item
       = render 'shared/organizations_dropdown'
     %li.nav-item
+      = link_to 'Create organization', new_registration_flow_path, class: 'nav-item nav-link'
+    %li.nav-item
       = link_to 'Sites', org_sites_path(current_org), class: 'nav-item nav-link'
     %li.nav-item
     = render 'shared/invites'
