@@ -7,7 +7,7 @@
         = devise_error_messages!
         .form-group
           = f.label :email
-          = f.email_field :email, autofocus: true, class: 'form-control', disabled: resource.email != nil
+          = f.email_field :email, autofocus: true, class: 'form-control', disabled: resource.email && resource.email.length.positive?
         .form-group
           = f.label :password
           - if @minimum_password_length

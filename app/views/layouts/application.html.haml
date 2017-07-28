@@ -17,49 +17,13 @@
       %a.navbar-brand{:href => "#"} Magmonitor
       #navbarExample.collapse.navbar-collapse
         %ul.sidebar-nav.navbar-nav
-          - if user_signed_in?
+          - if user_signed_in? && current_user.fully_registered?
             %li.nav-item.active
               = link_to(org_sites_path(current_org), class: 'nav-link') do
                 %i.fa.fa-fw.fa-dashboard
                 Sites 
           %li.nav-item
             = render 'shared/invites'
-            %a.nav-link{:href => "#"}
-              %i.fa.fa-fw.fa-area-chart
-              Charts
-          %li.nav-item
-            %a.nav-link{:href => "#"}
-              %i.fa.fa-fw.fa-table
-              Tables
-          %li.nav-item
-            %a.nav-link.nav-link-collapse.collapsed{"data-toggle" => "collapse", :href => "#collapseComponents"}
-              %i.fa.fa-fw.fa-wrench
-              Sites
-            %ul#collapseComponents.sidebar-second-level.collapse
-              %li
-                %a{:href => "#"} Fixed Navigation
-              %li
-                %a{:href => "#"} Custom Card Examples
-              %li
-                %a{:href => "#"} Blank Page
-              %li
-                %a{:href => "#"} Login Page
-          %li.nav-item
-            %a.nav-link.nav-link-collapse.collapsed{"data-toggle" => "collapse", :href => "#collapseMulti"}
-              %i.fa.fa-fw.fa-sitemap
-              Menu Levels
-            %ul#collapseMulti.sidebar-second-level.collapse
-              %li
-                %a{:href => "#"} Second Level Item
-              %li
-                %a{:href => "#"} Second Level Item
-              %li
-                %a.nav-link-collapse.collapsed{"data-toggle" => "collapse", :href => "#collapseMulti2"} Third Level
-                %ul#collapseMulti2.sidebar-third-level.collapse
-                  %li
-                    %a{:href => "#"} Third Level Item
-                  %li
-                    %a{:href => "#"} Third Level Item
         %ul.navbar-nav.ml-auto
           = render 'shared/organizations_dropdown'
           - if user_signed_in?
@@ -76,7 +40,7 @@
           %li.breadcrumb-item.active My Dashboard
         .container-fluid
           .row
-            %main.col-sm-11.offset-sm-1.col-md-9.offset-md-1.pt-3
+            %main.container
               = render 'shared/errors'
               = yield
     %a.scroll-to-top.rounded{:href => "#page-top"}

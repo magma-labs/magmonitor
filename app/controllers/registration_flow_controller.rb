@@ -3,7 +3,7 @@
 class RegistrationFlowController < ApplicationController
   skip_before_action :check_user_registration
 
-  layout 'public'
+  layout :find_layout
 
   def new
     @membership = current_user.memberships.new
@@ -22,6 +22,14 @@ class RegistrationFlowController < ApplicationController
   end
 
   private
+
+  def find_layout
+    if current_user.fully_registered
+      'application'
+    else
+      'public'
+    end
+  end
 
   def member_params
     permitted_params = params.require(:membership).permit(org_attributes)

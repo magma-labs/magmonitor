@@ -10,6 +10,9 @@
         = link_to(org_sites_path(org_id: organization.slug), class: 'dropdown-item') do
           = organization.name
         .dropdown-divider
-      = link_to('New organization', new_org_path)
+      = link_to(new_registration_flow_path, class: 'dropdown-item') do
+        %i.fa.fa-fw.fa-plus
+        %span
+          New organization
       -# %a.dropdown-item.small{:href => "#"}
       -#   View all organizations

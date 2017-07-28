@@ -61,14 +61,14 @@ RSpec.describe 'Invites', type: :feature do
   context '#create' do
     describe 'When inviting a non registered user' do
       it 'creates a new invitation with a valid email' do
-        visit '/invites'
+        visit '/invites/magmalabs'
         fill_in 'invite[email]', with: 'newuser@email.com'
         click_on 'Send'
         expect(page).to have_content('An invitation has been sent to newuser@email.com')
       end
 
       it 'shows errors when invalid email is submited' do
-        visit '/invites'
+        visit '/invites/magmalabs'
         fill_in 'invite[email]', with: 'invalidemail.com'
         click_on 'Send'
         expect(page).to have_content('Email is invalid')
@@ -76,13 +76,13 @@ RSpec.describe 'Invites', type: :feature do
     end
     describe 'When inviting a user already registered' do
       it 'shows error when user already exists on the organization' do
-        visit '/invites'
+        visit '/invites/magmalabs'
         fill_in 'invite[email]', with: user.email
         click_on 'Send'
         expect(page).to have_content('Email already a member of MagmaLabs')
       end
       it 'creates a new invitation for a registered user' do
-        visit '/invites'
+        visit '/invites/magmalabs'
         fill_in 'invite[email]', with: another_user.email
         click_on 'Send'
         expect(page).to have_content("An invitation has been sent to #{another_user.email}")
@@ -91,7 +91,7 @@ RSpec.describe 'Invites', type: :feature do
     describe 'When trying to create an invite' do
       it 'but current user is not an organization owner' do
         user.memberships.first.update_attribute(:role, nil)
-        visit '/invites'
+        visit '/invites/magmalabs'
         expect(page).not_to have_content('Invites')
       end
     end
@@ -107,7 +107,6 @@ RSpec.describe 'Invites', type: :feature do
         fill_in 'Password confirmation', with: '12345678'
         click_on 'Sign up'
         expect(page).to have_content('Welcome! You have signed up successfully')
-        # visit "/invites/accept_invite?invite_token=#{invite.token}"
       end
       it 'with valid token and user already registered' do
         invite.email = another_user.email

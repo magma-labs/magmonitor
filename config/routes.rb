@@ -18,9 +18,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/invites', to: 'invites#index', as: 'invites'
-  post '/invites', to: 'invites#create'
   get '/invites/accept_invite', to: 'invites#accept_invite', as: 'accept_invite'
+  get '/invites/:org_id', to: 'invites#index', as: 'invites'
+  post '/invites/:org_id', to: 'invites#create'
 
   mount Sidekiq::Web => '/async-web'
 end
