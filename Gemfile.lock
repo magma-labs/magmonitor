@@ -52,7 +52,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
     ast (2.3.0)
-    autoprefixer-rails (7.1.1.2)
+    autoprefixer-rails (7.1.2.3)
       execjs
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
@@ -116,6 +116,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffaker (2.6.0)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     haml (5.0.1)
@@ -358,6 +360,7 @@ DEPENDENCIES
   erubis
   factory_girl_rails
   ffaker
+  font-awesome-sass (~> 4.7.0)
   haml
   jbuilder (~> 2.5)
   kaminari
@@ -390,4 +393,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.1
+   1.15.3

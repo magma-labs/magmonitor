@@ -1,7 +1,15 @@
-.btn-group
-  %button.btn.btn-primary.dropdown-toggle{'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-toggle': 'dropdown'}
-    Organizations
-    %span.caret
-  .dropdown-menu
-    - current_user.organizations.each do |organization|
-      = link_to(organization.name, org_sites_path(org_id: organization.slug), class: 'dropdown-item')
+- if user_signed_in?
+  %li.nav-item.dropdown
+    %a.nav-link.dropdown-toggle.mr-lg-2{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#"}
+      %i.fa.fa-fw.fa-sitemap
+      %span
+        Organizations 
+    .dropdown-menu
+      %h6.dropdown-header= "#{current_user.organizations.count} in total"
+      - current_user.organizations.each do |organization|
+        = link_to(org_sites_path(org_id: organization.slug), class: 'dropdown-item') do
+          = organization.name
+        .dropdown-divider
+      = link_to('New organization', new_org_path)
+      -# %a.dropdown-item.small{:href => "#"}
+      -#   View all organizations

@@ -1,2 +1,4 @@
-- if current_user.owner_of?(current_org)
-  = link_to 'New invite', invites_path, class: 'nav-item nav-link'
+- if user_signed_in? && current_user.owner_of?(current_org)
+  = link_to(invites_path, class: 'nav-item nav-link') do
+    %i.fa.fa-fw.fa-envelope
+    New invite 

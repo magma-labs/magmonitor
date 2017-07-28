@@ -17,6 +17,7 @@ gem 'bundler'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
+gem 'font-awesome-sass', '~> 4.7.0'
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
