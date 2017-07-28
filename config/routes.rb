@@ -13,14 +13,13 @@ Rails.application.routes.draw do
   resource :registration_flow, controller: :registration_flow, only: %i[new create]
 
   resources :org, controller: :organizations do
+    get 'invite'
+    post 'invite', to: 'organizations#create_invite'
+    get 'accept_invite'
     resources :sites do
       resources :historical_checks, only: %i[index show]
     end
   end
-
-  get '/invites/accept_invite', to: 'invites#accept_invite', as: 'accept_invite'
-  get '/invites/:org_id', to: 'invites#index', as: 'invites'
-  post '/invites/:org_id', to: 'invites#create'
 
   mount Sidekiq::Web => '/async-web'
 end
