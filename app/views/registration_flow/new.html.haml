@@ -6,13 +6,13 @@
       = form_for @membership, url: {controller: :registration_flow, action: :create} do |f|
         = f.fields_for :organization do |org_form|
           .form-group.row
-            = org_form.label :name, 'Organization Name', class: 'col-sm-2 col-form-label'
-            .col-sm-10
+            = org_form.label :name, 'Organization Name', class: 'col-sm-3 col-form-label'
+            .col-sm-9
               = org_form.text_field :name, class: 'form-control', placeholder: 'New Organization Name'
           .form-group.row
-            = org_form.label :contact_email, 'Primary contact email', class: 'col-sm-2 col-form-label'
-            .col-sm-10
+            = org_form.label :contact_email, 'Primary contact email', class: 'col-sm-3 col-form-label'
+            .col-sm-9
               = org_form.email_field :contact_email, class: 'form-control', placeholder: 'admin@org.com'
         .form-group.row
-          .offset-sm-2.col-sm-10
+          .offset-sm-3.col-sm-9
             = f.submit 'Create', class: 'btn btn-primary'
