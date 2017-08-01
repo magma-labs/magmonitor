@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resource :registration_flow, controller: :registration_flow, only: %i[new create]
+  resource :groups_manager, controller: :groups_manager do
+    get 'index'
+    get 'show_users', as: 'show_users'
+  end
 
   resources :org, controller: :organizations do
     get 'invite'

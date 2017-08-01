@@ -1,0 +1,16 @@
+%h1 Users assigned
+.pull-right
+  = link_to 'Assign user', new_groups_manager_path, class: 'js-assign-user'
+%table.table.table-stripped.table-bordered
+  %thead
+    %tr
+      %th Name
+      %th Email
+      %th Actions
+  %tbody
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td
+          = link_to 'Remove'
