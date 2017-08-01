@@ -7,8 +7,8 @@
     %title MagMonitor
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
-
     = javascript_include_tag 'application'
+    = javascript_pack_tag 'application'
   %body{class: "#{controller_name} #{action_name}", data: { controller: controller_name.titleize, action: action_name } }
     %nav#mainNav.navbar.static-top.navbar-toggleable-md.navbar-inverse.bg-inverse
       %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarExample", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarExample", "data-toggle" => "collapse", :type => "button"}
@@ -41,6 +41,7 @@
           .row
             %main.container
               = render 'shared/errors'
+              = react_component 'Hola'
               = yield
     %a.scroll-to-top.rounded{:href => "#page-top"}
       %i.fa.fa-chevron-up

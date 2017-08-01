@@ -33,4 +33,5 @@ var Kernel = {
 
 $(document).ready(function() {
   Kernel.init();
+  ReactRailsUJS.mountComponents();
 });
