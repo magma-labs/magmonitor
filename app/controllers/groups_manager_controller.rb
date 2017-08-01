@@ -5,19 +5,15 @@ class GroupsManagerController < ApplicationController
     @user_groups = current_org.user_groups
   end
 
-  def new
-  end
+  def new; end
 
-  def create
-  end
+  def create; end
 
   def show_users
     @users = current_org.users
   end
 
-  def users_view
-  end
+  def users_view; end
 
-  def destroy
-  end
+  def destroy; end
 end
