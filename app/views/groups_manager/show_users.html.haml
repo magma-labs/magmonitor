@@ -1,6 +1,6 @@
 %h1 Users assigned
 .pull-right
-  = link_to 'Assign user', new_groups_manager_path, class: 'js-assign-user'
+  = react_component 'AssignUserContainer'
 %table.table.table-stripped.table-bordered
   %thead
     %tr
@@ -14,4 +14,3 @@
         %td= user.email
         %td
           = link_to 'Remove'
-= react_component 'Search'
