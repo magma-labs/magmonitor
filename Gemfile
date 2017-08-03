@@ -64,3 +64,6 @@ group :test do
   gem 'timecop'
   gem 'webmock'
 end
+
+gem 'mini_racer', platforms: :ruby
+gem 'webpacker_lite'

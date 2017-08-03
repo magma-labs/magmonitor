@@ -9,28 +9,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require jquery
 //= require tether
 //= require bootstrap
 //= require_tree .
-var Kernel = {
-  'exec': function(controller, action) {
-    try {
-      eval('window.' + controller + '.' + action + '()');
-    } catch (e) {
-    }
-  },
-
-  'init': function() {
-    var body       = document.body;
-    var controller = body.getAttribute("data-controller");
-    var action     = body.getAttribute("data-action");
-    Kernel.exec(controller, action);
-  }
-};
-
-$(document).ready(function() {
-  Kernel.init();
-  ReactRailsUJS.mountComponents();
-});
