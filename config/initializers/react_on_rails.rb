@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Shown below are the defaults for configuration
 ReactOnRails.configure do |config|
   # Client bundles are configured in application.js
@@ -7,22 +9,22 @@ ReactOnRails.configure do |config|
   config.generated_assets_dir = File.join(%w[public webpack], Rails.env)
 
   # Define the files we need to check for webpack compilation when running tests.
-  config.webpack_generated_files = %w( webpack-bundle.js )
+  config.webpack_generated_files = %w[webpack-bundle.js]
 
   # This is the file used for server rendering of React when using `(prerender: true)`
   # If you are never using server rendering, you may set this to "".
   # If you are using the same file for client and server rendering, having this set probably does
   # not affect performance.
-  config.server_bundle_js_file = "webpack-bundle.js"
+  config.server_bundle_js_file = 'webpack-bundle.js'
 
   # If you are using the ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
   # with rspec then this controls what yarn command is run
   # to automatically refresh your webpack assets on every test run.
-  config.npm_build_test_command = "yarn run build:test"
+  config.npm_build_test_command = 'yarn run build:test'
 
   # This configures the script to run to build the production assets by webpack. Set this to nil
   # if you don't want react_on_rails building this file for you.
-  config.npm_build_production_command = "yarn run build:production"
+  config.npm_build_production_command = 'yarn run build:production'
 
   ################################################################################
   # CLIENT RENDERING OPTIONS
@@ -48,7 +50,8 @@ ReactOnRails.configure do |config|
   # Default is true. Logs server rendering messages to Rails.logger.info
   config.logging_on_server = true
 
-  config.raise_on_prerender_error = false # change to true to raise exception on server if the JS code throws
+  config.raise_on_prerender_error = false
+  # change to true to raise exception on server if the JS code throws
 
   # Server rendering only (not for render_component helper)
   # You can configure your pool of JS virtual machines and specify where it should load code:
@@ -68,7 +71,8 @@ ReactOnRails.configure do |config|
   #
   # Replace the following line to the location where you keep your client i18n yml files
   # that will source for automatic generation on translations.js & default.js
-  # By default(without this option) all yaml files from Rails.root.join("config", "locales") and installed gems are loaded
+  # By default(without this option) all yaml files from Rails.root.join("config", "locales")
+  # and installed gems are loaded
   # config.i18n_yml_dir = Rails.root.join("config", "locales", "client")
 
   ################################################################################
@@ -76,7 +80,7 @@ ReactOnRails.configure do |config|
   ################################################################################
 
   # The server render method - either ExecJS or NodeJS
-  config.server_render_method = "ExecJS"
+  config.server_render_method = 'ExecJS'
 
   # If you want to use webpack for CSS and images, and still use the asset pipeline,
   # see https://github.com/shakacode/react_on_rails/blob/master/docs/additional-reading/rails-assets.md
