@@ -6,6 +6,7 @@ class Search extends React.Component {
     return (
       <Typeahead
         labelKey="name"
+        multiple
         options={
           [
             {name: 'Alabama', population: 4780127, capital: 'Montgomery', region: 'South'},
