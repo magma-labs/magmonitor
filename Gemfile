@@ -12,6 +12,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bundler'
 gem 'coffee-rails', '~> 4.2'
@@ -19,7 +20,6 @@ gem 'devise'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'haml'
-gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
