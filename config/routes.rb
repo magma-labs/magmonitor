@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     end
     namespace :api do
       namespace :v1 do
-        resources :users
+        resources :users do
+          collection do
+            get 'autocomplete'
+          end
+        end
       end
     end
   end

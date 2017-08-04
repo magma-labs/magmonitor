@@ -10,7 +10,7 @@ module.exports = {
       { loader: 'postcss-loader', options: { sourceMap: true } },
       'resolve-url-loader',
       { loader: 'sass-loader', options: { sourceMap: true } }
-      { loader: 'style-loader!css-loader' }
+      // { loader: 'style-loader!css-loader' }
     ]
   })
 }
