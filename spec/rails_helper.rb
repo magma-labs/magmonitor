@@ -34,6 +34,7 @@ RSpec.configure do |config|
   # Ensure that if we are running js tests, we are using latest webpack assets
   # This will use the defaults of :js and :server_rendering meta tags
 
+  config.include ApiHelper, type: :api
   ReactOnRails::TestHelper.ensure_assets_compiled
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

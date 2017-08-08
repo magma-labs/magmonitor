@@ -4,7 +4,7 @@ module Api
   module V1
     class UsersController < BaseController
       def index
-        users = current_org.users.page(params[:page][:number]).per(30)
+        users = current_org.users
         render json: users
       end
 
