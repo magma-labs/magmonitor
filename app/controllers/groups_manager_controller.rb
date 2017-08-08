@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class GroupsManagerController < ApplicationController
+  include ReactOnRails::Controller
+
   def index
     @user_groups = current_org.user_groups
   end
@@ -16,4 +18,10 @@ class GroupsManagerController < ApplicationController
   def users_view; end
 
   def destroy; end
+
+  private
+
+  def initialize_store_store
+    redux_store('GroupsManagerStore')
+  end
 end

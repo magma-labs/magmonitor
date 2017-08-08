@@ -1,7 +1,7 @@
 import React from 'react';
-import AssignUser from '../components/AssignUser';
+import AssignUser from './components/AssignUser';
 
-class GroupManagerContainer extends React.Component {
+class Index extends React.Component {
   constructor() {
     super();
   }
@@ -11,9 +11,10 @@ class GroupManagerContainer extends React.Component {
       <AssignUser
         buttonLabel='Assign User'
         className='modal-bg'
+        actions={this.props.actions}
       />
     );
   }
 }
 
-export default GroupManagerContainer;
+export default Index;

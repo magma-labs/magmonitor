@@ -4,7 +4,6 @@ const webpack = require('webpack');
 const { resolve } = require('path');
 
 const ManifestPlugin = require('webpack-manifest-plugin');
-const glob = require("glob")
 const webpackConfigLoader = require('react-on-rails/webpackConfigLoader');
 
 const configPath = resolve('..', 'config');
@@ -20,7 +19,8 @@ const config = {
       'es5-shim/es5-shim',
       'es5-shim/es5-sham',
       'babel-polyfill',
-    ].concat(glob.sync('./app/bundles/**/startup/*'))
+      './app/startup/clientRegistration'
+    ]
   },
 
   output: {

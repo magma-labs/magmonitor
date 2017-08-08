@@ -25,7 +25,10 @@ class AssignUser extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Assign user</ModalHeader>
           <ModalBody>
-            <Search/>
+            <Search 
+              current_org={this.props.current_org}
+              actions={this.props.actions}
+            />
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>{' '}
