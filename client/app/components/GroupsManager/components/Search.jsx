@@ -68,7 +68,7 @@ class Search extends React.Component {
     return (
       <AsyncTypeahead
         {...this.state}
-        labelKey="email"
+        labelKey={option => `${option.email} - ${option.name}`}
         onSearch={this.handleSearch}
         placeholder="Search a user..."
         renderMenuItemChildren={this.renderMenuItemChildren}

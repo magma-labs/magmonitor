@@ -10,7 +10,7 @@ module Api
 
       def autocomplete
         users = current_org.users
-            .where('name like :name OR email like :name', name: "%#{params[:keyword]}%")
+            .where('name ilike :name OR email ilike :name', name: "%#{params[:keyword]}%")
             .page(page_number).per(10)
         render json: users, each_serializer: Api::V1::MinimalUserSerializer
       end
