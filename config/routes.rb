@@ -34,5 +34,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    namespace :v1 do
+      get 'current_org', to: 'organizations#current'
+    end
+  end
+
   mount Sidekiq::Web => '/async-web'
 end

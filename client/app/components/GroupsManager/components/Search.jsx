@@ -7,12 +7,18 @@ class Search extends React.Component {
     super(props);
     this.state = {
       options: [],
-      current_value: ''
+      currentValue: ''
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleSelectedOption = this.handleSelectedOption.bind(this);
-    this.isValidUserEmail = this.isValidUserEmail.bind(this);
+  }
+
+  componentDidMount() {
+    Request.get('/api/v1/current_org', {})
+      .then((response) => {
+        this.props.actions.setCurrentOrg(response.data.attributes.slug);
+      });
   }
 
   parseResults(results) {
@@ -42,15 +48,12 @@ class Search extends React.Component {
     );
   }
 
-  isValidUserEmail = (email) => {
-    return this.state.options.find((user) => {return user.email === email});
-  }
-
-  handleSelectedOption = (e) => {
-    const email = e.target.value;
-    const currentValue = this.isValidUserEmail(email) ? email : '';
-    this.setState({current_value: currentValue});
-    this.props.actions.updateValue(currentValue);
+  handleSelectedOption = (selectedUsers) => {
+    let currentUser = {};
+    if(selectedUsers.length > 0) {
+      currentUser = selectedUsers[0];
+    }
+    this.props.actions.updateUser(currentUser);
   }
 
    handleSearch = query => {
@@ -72,7 +75,8 @@ class Search extends React.Component {
         onSearch={this.handleSearch}
         placeholder="Search a user..."
         renderMenuItemChildren={this.renderMenuItemChildren}
-        onBlur={this.handleSelectedOption}
+        onChange={this.handleSelectedOption}
+        ref={ref => this._typeahead = ref}
       />
     )
   }

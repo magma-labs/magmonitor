@@ -1,6 +1,7 @@
 import React from 'react';
 import Search from './Search';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { isEmptyObject } from '../../../utils/common';
 
 class AssignUser extends React.Component {
   constructor(props) {
@@ -10,12 +11,19 @@ class AssignUser extends React.Component {
     };
 
     this.toggle = this.toggle.bind(this);
+    this.assignUser = this.assignUser.bind(this);
   }
 
   toggle() {
     this.setState({
       modal: !this.state.modal
     });
+  }
+
+  assignUser() {
+    if (!isEmptyObject(this.props.data.user)) {
+    } else {
+    }
   }
 
   render() {
@@ -26,13 +34,13 @@ class AssignUser extends React.Component {
           <ModalHeader toggle={this.toggle}>Assign user</ModalHeader>
           <ModalBody>
             <Search 
-              current_org={this.props.current_org}
+              current_org={this.props.data.current_org}
               actions={this.props.actions}
             />
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>{' '}
-            <Button color="primary" onClick={this.toggle}>Assign</Button>
+            <Button color="primary" onClick={this.assignUser}>Assign</Button>
           </ModalFooter>
         </Modal>
       </div>

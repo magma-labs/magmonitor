@@ -5,7 +5,7 @@ module Api
     # Organization Serializer
     # Returns organization info without relationships
     class OrganizationSerializer < ActiveModel::Serializer
-      attributes :id, :name
+      attributes :id, :name, :slug
     end
   end
 end

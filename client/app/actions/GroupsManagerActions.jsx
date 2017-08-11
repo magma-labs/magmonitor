@@ -1,7 +1,14 @@
 /* eslint-disable import/prefer-default-export */
-export function updateValue(value) {
+export function updateUser(user) {
   return {
-    type: 'UPDATE_VALUE',
-    value 
+    type: 'UPDATE_USER',
+    user
+  };
+}
+
+export function setCurrentOrg(current_org) {
+  return {
+    type: 'SET_CURRENT_ORG',
+    current_org
   };
 }

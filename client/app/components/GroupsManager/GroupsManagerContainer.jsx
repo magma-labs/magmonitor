@@ -8,6 +8,7 @@ import * as groupManagerActions from '../../actions/GroupsManagerActions';
 const GroupsManagerContainer = ({ actions, data }) => (
   <Index {...{ actions, data }} />
 );
+
 GroupsManagerContainer.propTypes = {
   actions: PropTypes.object.isRequired,
   data: PropTypes.object.isRequired
@@ -15,7 +16,7 @@ GroupsManagerContainer.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    data: state.helloWorldData
+    data: state.groupsManagerData
   };
 }
 
