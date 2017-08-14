@@ -12,7 +12,8 @@ class GroupsManagerController < ApplicationController
   def create; end
 
   def show_users
-    @users = current_org.users
+    @users = current_org.user_groups.find(params[:id]).users
+    @groups_manager_data = groups_manager_data
   end
 
   def users_view; end
@@ -23,5 +24,14 @@ class GroupsManagerController < ApplicationController
 
   def initialize_store_store
     redux_store('GroupsManagerStore')
+  end
+
+  def groups_manager_data
+    {
+        groupsManagerData: {
+            current_org: current_org,
+            group_id: params[:id]
+        }
+    }
   end
 end

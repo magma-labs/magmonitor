@@ -13,8 +13,8 @@ Rails.application.routes.draw do
   resource :registration_flow, controller: :registration_flow, only: %i[new create]
   resource :groups_manager, controller: :groups_manager do
     get 'index'
-    get 'show_users', as: 'show_users'
   end
+  get 'groups_manager/:id/show_users', to: 'groups_manager#show_users', as: 'show_users'
 
   resources :org, controller: :organizations do
     get 'invite'
@@ -28,6 +28,7 @@ Rails.application.routes.draw do
         resources :users do
           collection do
             get 'autocomplete'
+            post 'assign_to_group'
           end
         end
       end

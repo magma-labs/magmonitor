@@ -14,6 +14,8 @@ module Api
             .page(page_number).per(10)
         render json: users, each_serializer: Api::V1::MinimalUserSerializer
       end
+
+      def assign_to_group; end
     end
   end
 end

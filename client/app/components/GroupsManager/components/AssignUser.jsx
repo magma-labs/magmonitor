@@ -2,6 +2,7 @@ import React from 'react';
 import Search from './Search';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { isEmptyObject } from '../../../utils/common';
+import Request from '../../../utils/Request';
 
 class AssignUser extends React.Component {
   constructor(props) {
@@ -22,6 +23,12 @@ class AssignUser extends React.Component {
 
   assignUser() {
     if (!isEmptyObject(this.props.data.user)) {
+      const user = this.props.data.user;
+      Request.post(`/org/${this.props.current_org}/api/v1/users/assign_to_group`, {
+        user: user
+      }).then((response) => {
+        debugger;
+      });
     } else {
     }
   }

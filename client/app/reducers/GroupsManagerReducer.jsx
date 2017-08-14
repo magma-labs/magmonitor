@@ -1,6 +1,7 @@
 const initialState = {
   user: {},
-  current_org: ''
+  current_org: '',
+  group_id: 0
 };
 
 export default function groupsManagerReducer(state = initialState, action) {
