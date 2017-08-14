@@ -15,7 +15,14 @@ module Api
         render json: users, each_serializer: Api::V1::MinimalUserSerializer
       end
 
-      def assign_to_group; end
+      def assign_to_group
+        result = Magmonitor::GroupsManagerService.new(params).perform_assign_user
+        if result
+          render json: { success: true }, status: 200
+        else
+          render json: { success: false }, status: 500
+        end
+      end
     end
   end
 end

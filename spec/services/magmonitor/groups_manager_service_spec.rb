@@ -9,8 +9,8 @@ RSpec.describe Magmonitor::GroupsManagerService do
     let(:group) { FactoryGirl.create(:user_group) }
     let(:group_params) do
       {
-          user: user,
-          group: group
+          user: user.to_json,
+          group: group.to_json
       }
     end
 
