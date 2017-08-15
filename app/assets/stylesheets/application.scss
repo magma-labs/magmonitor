@@ -1,8 +1,12 @@
-@import "bootstrap";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+@import 'bootstrap';
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 @import 'base/*';
 @import 'helpers/*';
-@import 'vendors/*';
+@import 'vendors/theme/*';
+@import 'react-bootstrap-typeahead/css/Typeahead';
+@import 'react-bootstrap-typeahead/css/Token';
+@import 'react-bootstrap-typeahead/css/Loader';
+@import 'react-bootstrap-typeahead/css/ClearButton';
 @import 'layout/*';
 @import 'pages/*';

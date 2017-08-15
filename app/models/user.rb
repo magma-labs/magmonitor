@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :organizations, through: :memberships
+  has_many :user_groups_users
+  has_many :user_groups, through: :user_groups_users
 
   def registration_finished
     update_attribute :fully_registered, true

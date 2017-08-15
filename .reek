@@ -47,3 +47,11 @@ exclude_paths:
 "spec/support":
   UtilityFunction:
     enabled: false
+"app/controllers/api/v1":
+  UncommunicativeModuleName:
+    enabled: false
+  IrresponsibleModule:
+    enabled: false
+"app/serializers/api/v1":
+  UncommunicativeModuleName:
+    enabled: false

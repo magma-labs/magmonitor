@@ -51,6 +51,7 @@ Metrics/BlockLength:
     - 'Rakefile'
     - '**/*.rake'
     - 'spec/**/*.rb'
+    - 'config/routes.rb'
 
 Metrics/ModuleLength:
   Exclude:

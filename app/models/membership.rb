@@ -6,6 +6,7 @@ class Membership < ApplicationRecord
 
   accepts_nested_attributes_for :organization
 
+  default_scope { order(:user_id) }
   def owner?
     role == 'owner'
   end

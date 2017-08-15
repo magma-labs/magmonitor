@@ -12,20 +12,23 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bundler'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'erubis' # ONLY until Haml supports rails 5.1 natively
+gem 'eslint-rails'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'haml'
-gem 'jbuilder', '~> 2.5'
 gem 'kaminari'
 gem 'omniauth-github'
 gem 'omniauth-google-oauth2'
 gem 'pg', '~> 0.18'
 gem 'postmark-rails', '~> 0.15.0'
 gem 'puma', '~> 3.7'
+gem 'react-autocomplete-rails'
+gem 'react_on_rails', '8.0.0'
 gem 'sass-rails', github: 'rails/sass-rails'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
@@ -62,3 +65,6 @@ group :test do
   gem 'timecop'
   gem 'webmock'
 end
+
+gem 'mini_racer', platforms: :ruby
+gem 'webpacker_lite'
