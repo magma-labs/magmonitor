@@ -28,9 +28,9 @@ Rails.application.routes.draw do
         resources :users do
           collection do
             get 'autocomplete'
-            post 'assign_to_group'
           end
         end
+        resources :assignments
       end
     end
   end
