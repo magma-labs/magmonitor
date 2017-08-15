@@ -2,15 +2,15 @@
 
 require 'rails_helper'
 
-RSpec.describe Magmonitor::GroupsManagerService do
-  subject { Magmonitor::GroupsManagerService.new(group_params) }
+RSpec.describe Magmonitor::AssignmentsService do
+  subject { Magmonitor::AssignmentsService.new(params) }
   context '#perform_assign_user' do
     let(:user) { FactoryGirl.create(:user) }
     let(:group) { FactoryGirl.create(:user_group) }
-    let(:group_params) do
+    let(:params) do
       {
-          user: user.to_json,
-          group: group.to_json
+          user_id: user.id,
+          group_id: group.id
       }
     end
 
