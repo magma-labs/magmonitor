@@ -6,7 +6,7 @@ module Api
       def create
         result = Magmonitor::AssignmentsService.new(params).perform_assign_user
         if result
-          render json: result, serializer: AssignmentSerializer
+          render json: result, include: ['users'], each_serializer: Api::V1::UserGroupSerializer
         else
           render json: { success: false }, status: 500
         end

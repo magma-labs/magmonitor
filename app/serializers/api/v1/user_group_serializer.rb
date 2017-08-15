@@ -4,9 +4,9 @@ module Api
   module V1
     # Serializer used to return a minimal version of user data
     # For example: an autocomplete
-    class AssignmentSerializer < ActiveModel::Serializer
+    class UserGroupSerializer < ActiveModel::Serializer
       attributes :id, :name
-      has_many :users
+      has_many :users, serializer: MinimalUserSerializer
     end
   end
 end

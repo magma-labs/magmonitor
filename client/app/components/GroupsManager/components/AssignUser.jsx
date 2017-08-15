@@ -24,8 +24,10 @@ class AssignUser extends React.Component {
   assignUser() {
     if (!isEmptyObject(this.props.data.user)) {
       const data = this.props.data;
-      eequest.post(`/org/${this.props.current_org}/api/v1/users/assign_to_group`, {
-        data: data
+
+      Request.post(`/org/${this.props.current_org}/api/v1/assignments`, {
+        user_id: data.user.id,
+        group_id: data.group_id
       }).then((response) => {
         debugger;
       });
