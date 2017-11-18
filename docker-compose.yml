@@ -9,7 +9,7 @@ services:
     environment:
       - RAILS_PORT=3000
     env_file:
-      - .env
+      - dev.env
     volumes:
       - '.:/usr/src/app'
     ports:
@@ -23,6 +23,21 @@ services:
       - /bin/bash
       - -c
       - bundle install --jobs 20 --retry 5; yarn install; rm ./tmp/pids/server.pid; rails db:setup db:seed; rails s
+
+  test:
+    build: .
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - test.env
+    volumes:
+      - '.:/usr/src/app'
+    networks:
+      - magmonitor
+    stdin_open: true
+    tty: true
+    working_dir: '/usr/src/app'
 
   postgres:
     image: postgres:9.4

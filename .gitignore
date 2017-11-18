@@ -20,6 +20,9 @@
 /public/packs
 /node_modules
 
+# Database config
+config/database.yml
+
 # Editors
 .idea
 
